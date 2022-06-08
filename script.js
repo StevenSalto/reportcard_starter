@@ -12,7 +12,7 @@ By the end of the lab, all tests in the report should be passing.
 const studentInformation = {
   name: "Steven Salto",
   grade: "Sophomore",
-  advisor: "Michael Kaplan",
+  advisor: "Gary Gary",
   major: "Computer Science",
   graduationYear: "2024",
   imageUrl: "fox.jfif",
@@ -93,7 +93,7 @@ function updateStudentName(studentName) {
  * @param {String|Number} studentGradeLevel - the grade level of the student
  */
 function updateStudentGradeLevel(studentGradeLevel) {
-  document.getElementById("student-grade-level").innerHTML = studentGradeLevel;
+  spanStudentGradeLevel.innerHTML = studentGradeLevel;
 }
 
 /**
@@ -102,7 +102,6 @@ function updateStudentGradeLevel(studentGradeLevel) {
  * @param {String} studentAdvisor - the advisor of the student
  */
 function updateStudentAdvisor(studentAdvisor) {
-  console.log(studentAdvisor)
   document.getElementById("student-advisor").innerHTML = studentAdvisor;
 }
 
@@ -175,16 +174,16 @@ function addReportCardHeaders(reportCardTableElement) {
  */
 function addCourseRowToReportCard(reportCardTableElement, course, rowNum) {
   // update the code here with information about the course passed to this function
-  console.log(course.code, course.name, course.semester, course.credits, course.grade)
+  console.log(reportCardTableElement, course, rowNum)
   reportCardTableElement.innerHTML += `
   <div class="table-row course-row row-${rowNum + 1} ${rowNum % 2 === 1 ? "odd" : "even"}">
     <h4 class="code-col">${course.code}</h4>
     <h4 class="name-col">${course.name}</h4>
     <h4 class="sem-col">${course.semester}</h4>
-    <h4 class="cred-col"><span className="credit">${course.credits}</span> credits</h4>
+    <h4 class="cred-col"><span className="credit">${course.credits}</span>credits</h4>
     <h4 class="lett-col gpa">${course.grade}</h4>
-    
-  </di
+    <h4 id="gpa-${rowNum + 1}" class="pts-col">?</h4>
+  </div>
   `
 }
 
@@ -214,8 +213,8 @@ function updateReportCard(reportCardTableElement, currentSemester) {
   // reset the report card table's inner html to an empty string
   if (reportCardTableElement) reportCardTableElement.innerHTML = ``
 
-  addReportCardHeaders(reportCardTableElement);
-  addCourseRowToReportCard(reportCardTableElement, course, rowNum);
+  //addReportCardHeaders(reportCardTableElement);
+  //addCourseRowToReportCard(reportCardTableElement, course, rowNum);
 }
 
 /**
@@ -300,5 +299,5 @@ function calculateSemesterGpa(reportCardTableElement) {
 
 window.onload = function () {
   // execute your functions here to make sure they run as soon as the page loads
-  populateStudentInfo();
+  populateStudentInfo(studentInformation);
 }
