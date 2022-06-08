@@ -174,7 +174,7 @@ function addReportCardHeaders(reportCardTableElement) {
  */
 function addCourseRowToReportCard(reportCardTableElement, course, rowNum) {
   // update the code here with information about the course passed to this function
-  console.log(reportCardTableElement, course, rowNum)
+ 
   reportCardTableElement.innerHTML += `
   <div class="table-row course-row row-${rowNum + 1} ${rowNum % 2 === 1 ? "odd" : "even"}">
     <h4 class="code-col">${course.code}</h4>
@@ -182,7 +182,7 @@ function addCourseRowToReportCard(reportCardTableElement, course, rowNum) {
     <h4 class="sem-col">${course.semester}</h4>
     <h4 class="cred-col"><span className="credit">${course.credits} </span></h4>
     <h4 class="lett-col gpa">${course.grade}</h4>
-    <h4 id="gpa-${rowNum + 1}" class="pts-col">?</h4>
+    <h4 id="gpa-${rowNum + 1}" class="pts-col">???</h4>
   </div>
   `
 }
@@ -214,7 +214,8 @@ function updateReportCard(reportCardTableElement, currentSemester) {
   if (reportCardTableElement) reportCardTableElement.innerHTML = ``
 
   addReportCardHeaders(reportCardTableElement);
-  addCourseRowToReportCard(reportCardTableElement, studentData[currentSemester], 0);
+  console.log(studentData[currentSemester][0], "from out")
+  addCourseRowToReportCard(reportCardTableElement, studentData[currentSemester][0], 0);
 }
 
 /**
