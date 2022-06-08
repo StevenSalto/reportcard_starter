@@ -240,6 +240,7 @@ function updateReportCard(reportCardTableElement, currentSemester) {
   });
 
   addTotalsRow(reportCardTableElement);
+  addGpaRow(reportCardTableElement);
 }
 
 /**
