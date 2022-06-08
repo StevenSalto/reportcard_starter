@@ -180,7 +180,7 @@ function addCourseRowToReportCard(reportCardTableElement, course, rowNum) {
     <h4 class="code-col">${course.code}</h4>
     <h4 class="name-col">${course.name}</h4>
     <h4 class="sem-col">${course.semester}</h4>
-    <h4 class="cred-col"><span className="credit">${course.credits}</span>credits</h4>
+    <h4 class="cred-col"><span className="credit">${course.credits} </span></h4>
     <h4 class="lett-col gpa">${course.grade}</h4>
     <h4 id="gpa-${rowNum + 1}" class="pts-col">?</h4>
   </div>
@@ -213,8 +213,8 @@ function updateReportCard(reportCardTableElement, currentSemester) {
   // reset the report card table's inner html to an empty string
   if (reportCardTableElement) reportCardTableElement.innerHTML = ``
 
-  //addReportCardHeaders(reportCardTableElement);
-  //addCourseRowToReportCard(reportCardTableElement, course, rowNum);
+  addReportCardHeaders(reportCardTableElement);
+  addCourseRowToReportCard(reportCardTableElement, studentData[currentSemester], 0);
 }
 
 /**
@@ -300,4 +300,5 @@ function calculateSemesterGpa(reportCardTableElement) {
 window.onload = function () {
   // execute your functions here to make sure they run as soon as the page loads
   populateStudentInfo(studentInformation);
+  updateReportCard(divReportCardTable, semester);
 }
