@@ -182,7 +182,7 @@ function addCourseRowToReportCard(reportCardTableElement, course, rowNum) {
     <h4 class="sem-col">${course.semester}</h4>
     <h4 class="cred-col"><span className="credit">${course.credits}</span> credits</h4>
     <h4 class="lett-col gpa">${course.grade}</h4>
-    <h4 id="gpa-${rowNum + 1}" class="pts-col">???</h4>
+    <h4 id="gpa-${rowNum + 1}" class="pts-col">${gpaPointsLookup[course.grade]}</h4>
   </div>
   `
 }
@@ -191,14 +191,32 @@ function addCourseRowToReportCard(reportCardTableElement, course, rowNum) {
  * This function should add HTML for the totals row in the report card.
  */
 function addTotalsRow(reportCardTableElement) {
-  reportCardTableElement.innerHTML += ``
+  reportCardTableElement.innerHTML += `
+  <div class="table-row totals even">
+    <h4 class="code-col"></h4>
+    <h4 class="name-col"></h4>
+    <h4 class="sem-col">Totals:</h4>
+    <h4 id="total-credits" class="cred-col"> ? credits </h4>
+    <h4 class="lett-col"></h4>
+    <h4 id="total-pts" class="pts-col">?</h4>
+  </div> 
+  `
 }
 
 /**
  * This function should add HTML for the final row in the report card.
  */
 function addGpaRow(reportCardTableElement) {
-  reportCardTableElement.innerHTML += ``
+  reportCardTableElement.innerHTML += `
+  <div class="table-row gpa odd">
+    <h4 class="code-col"></h4>
+    <h4 class="name-col"></h4>
+    <h4 class="sem-col">GPA:</h4>
+    <h4 class="cred-col"></h4>
+    <h4 class="lett-col"></h4>
+    <h4 id="gpa" class="pts-col"> ?</h4>               
+  </div>
+  `
 }
 
 /**
@@ -220,6 +238,8 @@ function updateReportCard(reportCardTableElement, currentSemester) {
     //console.log(element[1], "from in")
     addCourseRowToReportCard(reportCardTableElement, element[1], element[0]);
   });
+
+  addTotalsRow(reportCardTableElement);
 }
 
 /**
@@ -233,11 +253,15 @@ function updateReportCard(reportCardTableElement, currentSemester) {
  * If the dropdown classList doesn't contain the "closed" class, 'closeDropdown' function should add it.
  */
 function closeDropdown(dropdownElement) {
-  // code goes here
+  if(dropdownElement.contains("closed")) {
+    dropdownElement.remove("closed");
+  }
 }
 
 function openDropdown(dropdownElement) {
-  // code goes here
+  if(!dropdownElement.contains("closed")) {
+    dropdownElement.add("closed");
+  }
 }
 
 /**
